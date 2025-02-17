@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/25.0.2 Chrome/128.0.6613.186 Electron/32.2.5 Safari/537.36" version="25.0.2">
   <diagram name="Page-1" id="bNE_D-fTSQdiR-3sDrzl">
-    <mxGraphModel dx="30280" dy="21680" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="3990" dy="6207" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -828,10 +828,10 @@
             <mxPoint x="9763" y="-1209" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="4TkhLjCaOaOTBxujXMFi-2" value="&lt;b&gt;Thor jeg er lidt i tvivl om hvad der sker her.&lt;br&gt;Hvordan har win earnings forbindelse til banken?&lt;br&gt;&lt;br&gt;Når de først er inde på siden. &lt;br&gt;Så er earnings også direkte på siden&lt;/b&gt;&lt;div&gt;&lt;b&gt;Det er først når de laver en &quot;withdrawal&quot;&amp;nbsp;&lt;/b&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=Helvetica;fontSize=70;fontColor=default;" vertex="1" parent="1">
+        <mxCell id="4TkhLjCaOaOTBxujXMFi-2" value="&lt;b&gt;Thor jeg er lidt i tvivl om hvad der sker her.&lt;br&gt;Hvordan har win earnings forbindelse til banken?&lt;br&gt;&lt;br&gt;Når de først er inde på siden. &lt;br&gt;Så er earnings også direkte på siden&lt;/b&gt;&lt;div&gt;&lt;b&gt;Det er først når de laver en &quot;withdrawal&quot;&amp;nbsp;&lt;/b&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=Helvetica;fontSize=70;fontColor=default;" parent="1" vertex="1">
           <mxGeometry x="7436" y="1713" width="1663" height="516" as="geometry" />
         </mxCell>
-        <mxCell id="4TkhLjCaOaOTBxujXMFi-3" value="&lt;b&gt;Thor: Måske skal vi tilføje&lt;br&gt;6: &quot;New account balance is updated and shown user&quot;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=Helvetica;fontSize=70;fontColor=default;" vertex="1" parent="1">
+        <mxCell id="4TkhLjCaOaOTBxujXMFi-3" value="&lt;b&gt;Thor: Måske skal vi tilføje&lt;br&gt;6: &quot;New account balance is updated and shown user&quot;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=Helvetica;fontSize=70;fontColor=default;" parent="1" vertex="1">
           <mxGeometry x="5458" y="4811" width="1800" height="180" as="geometry" />
         </mxCell>
       </root>
