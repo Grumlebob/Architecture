@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.16 Chrome/132.0.6834.196 Electron/34.2.0 Safari/537.36" version="26.0.16">
   <diagram name="Page-1" id="bNE_D-fTSQdiR-3sDrzl">
-    <mxGraphModel dx="23940" dy="15420" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="13580" dy="8607" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -2257,28 +2257,20 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="MZuMaS_r5kYf5SQJwF9V-146" value="Bookmaker" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=1;fillColor=none;gradientColor=none;movable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;strokeWidth=4;" vertex="1" parent="1">
-          <mxGeometry x="29824" y="3827" width="474" height="277" as="geometry" />
+        <mxCell id="MZuMaS_r5kYf5SQJwF9V-146" value="Bookmakers" style="rounded=0;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=1;fillColor=none;gradientColor=none;movable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;strokeWidth=4;" vertex="1" parent="1">
+          <mxGeometry x="29800" y="3837.38" width="527" height="252" as="geometry" />
         </mxCell>
         <mxCell id="MZuMaS_r5kYf5SQJwF9V-151" value="State change" style="edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;strokeWidth=5;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=0;startFill=0;endArrow=classic;endFill=1;endSize=50;targetPerimeterSpacing=-1;" edge="1" parent="1" source="MZuMaS_r5kYf5SQJwF9V-148" target="MZuMaS_r5kYf5SQJwF9V-145">
           <mxGeometry x="-0.0399" y="85" relative="1" as="geometry">
             <mxPoint x="2" y="-4" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="MZuMaS_r5kYf5SQJwF9V-148" value="SportsOddsUpdater" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=1;fillColor=none;gradientColor=none;movable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;strokeWidth=4;" vertex="1" parent="1">
-          <mxGeometry x="31137" y="3810.63" width="637" height="301.5" as="geometry" />
+        <mxCell id="MZuMaS_r5kYf5SQJwF9V-148" value="SportsOddsUpdater&lt;br&gt;Endpoint" style="rounded=0;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=1;fillColor=none;gradientColor=none;movable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;strokeWidth=4;" vertex="1" parent="1">
+          <mxGeometry x="31164" y="3806.87" width="637" height="309.03" as="geometry" />
         </mxCell>
         <mxCell id="MZuMaS_r5kYf5SQJwF9V-153" value="Notify" style="edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;strokeWidth=5;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=0;startFill=0;endArrow=classic;endFill=1;endSize=50;targetPerimeterSpacing=-1;" edge="1" parent="1" source="MZuMaS_r5kYf5SQJwF9V-145" target="MZuMaS_r5kYf5SQJwF9V-152">
           <mxGeometry x="0.0401" y="144" relative="1" as="geometry">
             <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="MZuMaS_r5kYf5SQJwF9V-165" value="Notify" style="edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;strokeWidth=5;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=0;startFill=0;endArrow=classic;endFill=1;endSize=50;targetPerimeterSpacing=-1;" edge="1" parent="1" source="MZuMaS_r5kYf5SQJwF9V-145" target="MZuMaS_r5kYf5SQJwF9V-162">
-          <mxGeometry x="0.1627" y="-62" relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="32900" y="4417" />
-            </Array>
-            <mxPoint x="1" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="MZuMaS_r5kYf5SQJwF9V-145" value="Event broker" style="rounded=0;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=1;fillColor=none;gradientColor=none;movable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;strokeWidth=4;" vertex="1" parent="1">
@@ -2289,30 +2281,24 @@
             <mxPoint x="21" y="4" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="MZuMaS_r5kYf5SQJwF9V-152" value="Trigger order bet" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=1;fillColor=none;gradientColor=none;movable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;strokeWidth=4;" vertex="1" parent="1">
-          <mxGeometry x="32732" y="4967.88" width="577" height="265.5" as="geometry" />
+        <mxCell id="MZuMaS_r5kYf5SQJwF9V-152" value="Trigger order &lt;br&gt;subscribers" style="rounded=0;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=0;resizable=1;fillColor=none;gradientColor=none;movable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;strokeWidth=4;" vertex="1" parent="1">
+          <mxGeometry x="32754.5" y="4941" width="522" height="330.88" as="geometry" />
         </mxCell>
-        <mxCell id="MZuMaS_r5kYf5SQJwF9V-160" value="Invoke" style="edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;strokeWidth=5;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=0;startFill=0;endArrow=classic;endFill=1;endSize=50;targetPerimeterSpacing=-1;" edge="1" parent="1" source="MZuMaS_r5kYf5SQJwF9V-155" target="MZuMaS_r5kYf5SQJwF9V-159">
-          <mxGeometry x="-0.0462" y="-95" relative="1" as="geometry">
-            <mxPoint x="68" y="-89" as="offset" />
+        <mxCell id="MZuMaS_r5kYf5SQJwF9V-160" value="Invoke with internal &lt;br&gt;request format" style="edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;strokeWidth=5;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=0;startFill=0;endArrow=classic;endFill=1;endSize=50;targetPerimeterSpacing=-1;" edge="1" parent="1" source="MZuMaS_r5kYf5SQJwF9V-155" target="MZuMaS_r5kYf5SQJwF9V-159">
+          <mxGeometry x="-0.0443" y="-152" relative="1" as="geometry">
+            <mxPoint x="24" y="-5" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="MZuMaS_r5kYf5SQJwF9V-155" value="Bet placer" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=1;fillColor=none;gradientColor=none;movable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;strokeWidth=4;" vertex="1" parent="1">
           <mxGeometry x="31191" y="4942.38" width="529" height="322" as="geometry" />
         </mxCell>
-        <mxCell id="MZuMaS_r5kYf5SQJwF9V-161" value="Forward request" style="edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=default;strokeWidth=5;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=0;startFill=0;endArrow=classic;endFill=1;endSize=50;targetPerimeterSpacing=-1;" edge="1" parent="1" source="MZuMaS_r5kYf5SQJwF9V-159" target="MZuMaS_r5kYf5SQJwF9V-146">
+        <mxCell id="MZuMaS_r5kYf5SQJwF9V-161" value="Forward request&lt;br&gt;with format adjusted &lt;br&gt;to specific bookmaker" style="edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=default;strokeWidth=5;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=0;startFill=0;endArrow=classic;endFill=1;endSize=50;targetPerimeterSpacing=-1;" edge="1" parent="1" source="MZuMaS_r5kYf5SQJwF9V-159" target="MZuMaS_r5kYf5SQJwF9V-146">
           <mxGeometry x="0.014" relative="1" as="geometry">
             <mxPoint y="-3" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="MZuMaS_r5kYf5SQJwF9V-159" value="Mikro kernel" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=1;fillColor=none;gradientColor=none;movable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;strokeWidth=4;" vertex="1" parent="1">
-          <mxGeometry x="29802" y="4933" width="510" height="349" as="geometry" />
-        </mxCell>
-        <mxCell id="MZuMaS_r5kYf5SQJwF9V-164" value="Invoke" style="edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;strokeWidth=5;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=0;startFill=0;endArrow=classic;endFill=1;endSize=50;targetPerimeterSpacing=-1;" edge="1" parent="1" source="MZuMaS_r5kYf5SQJwF9V-162" target="MZuMaS_r5kYf5SQJwF9V-155">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="MZuMaS_r5kYf5SQJwF9V-162" value="Betting UI" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=1;fillColor=none;gradientColor=none;movable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;strokeWidth=4;" vertex="1" parent="1">
-          <mxGeometry x="31197.5" y="4307.13" width="516" height="252" as="geometry" />
+        <mxCell id="MZuMaS_r5kYf5SQJwF9V-159" value="Mikrokernal" style="rounded=0;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=1;fillColor=none;gradientColor=none;movable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;strokeWidth=4;" vertex="1" parent="1">
+          <mxGeometry x="29798" y="4986.38" width="531" height="229" as="geometry" />
         </mxCell>
         <mxCell id="MZuMaS_r5kYf5SQJwF9V-168" value="Sport related event" style="edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;strokeWidth=5;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=0;startFill=0;endArrow=classic;endFill=1;endSize=50;targetPerimeterSpacing=-1;" edge="1" parent="1" source="MZuMaS_r5kYf5SQJwF9V-166" target="MZuMaS_r5kYf5SQJwF9V-146">
           <mxGeometry x="-0.1223" relative="1" as="geometry">
@@ -2322,8 +2308,8 @@
         <mxCell id="MZuMaS_r5kYf5SQJwF9V-166" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#000000;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=1;rotation=0;" vertex="1" parent="1">
           <mxGeometry x="30004" y="3397" width="114" height="114" as="geometry" />
         </mxCell>
-        <mxCell id="MZuMaS_r5kYf5SQJwF9V-169" value="Event broker vs Mikro kernel" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=4;labelBackgroundColor=default;" vertex="1" parent="1">
-          <mxGeometry x="31021" y="3350" width="905" height="96" as="geometry" />
+        <mxCell id="MZuMaS_r5kYf5SQJwF9V-169" value="Pattern: Event broker &amp;amp; Mikrokernel" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=4;labelBackgroundColor=default;" vertex="1" parent="1">
+          <mxGeometry x="30928" y="3154" width="1127" height="96" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
