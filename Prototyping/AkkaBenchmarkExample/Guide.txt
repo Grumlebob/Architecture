@@ -1,2 +1,5 @@
 To run benchmarks:
  dotnet run -c Release
+
+
+Et alternativ vi kunne lave: Tilføje en loadbalance bag endpoints, og så have flere "servere" istedet for en actor der router.
