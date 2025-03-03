@@ -1,0 +1,2 @@
+To run benchmarks:
+ dotnet run -c Release
