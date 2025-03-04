@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Prototyping", "Prototyping", "{4BE31757-A537-B19D-0480-3A87B2BDF628}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AkkaBenchmarkExample", "Prototyping\AkkaBenchmarkExample\AkkaBenchmarkExample.csproj", "{AB287E29-CE93-B408-401C-5F101165CB5B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB287E29-CE93-B408-401C-5F101165CB5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB287E29-CE93-B408-401C-5F101165CB5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB287E29-CE93-B408-401C-5F101165CB5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB287E29-CE93-B408-401C-5F101165CB5B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AB287E29-CE93-B408-401C-5F101165CB5B} = {4BE31757-A537-B19D-0480-3A87B2BDF628}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6C00BA16-F6DF-4FC7-AE49-5CF881F39EE1}
+	EndGlobalSection
+EndGlobal
