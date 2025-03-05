@@ -10,8 +10,8 @@ namespace AkkaBenchmarkExample;
 public abstract class BookmakerRequestBase
 {
     public int Id { get; set; }
-    public DateTime SendTime { get; set; }
-    public DateTime ReceiveTime { get; set; }
+    public DateTime InitiatedTime { get; set; }
+    public DateTime ComputationDoneTime { get; set; }
 }
 
 // Five distinct bookmaker request types.
@@ -27,11 +27,11 @@ public static class BookmakerRequestFactory
     public static BookmakerRequestBase Create(int i) =>
         (i % 5) switch
         {
-            0 => new BetanoBookmaker { Id = i, SendTime = DateTime.UtcNow },
-            1 => new GetLuckyBookmaker { Id = i, SendTime = DateTime.UtcNow },
-            2 => new DanskeSpilBookmaker { Id = i, SendTime = DateTime.UtcNow },
-            3 => new NordicBetBookmaker { Id = i, SendTime = DateTime.UtcNow },
-            4 => new LeoVegasBookmaker { Id = i, SendTime = DateTime.UtcNow },
+            0 => new BetanoBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
+            1 => new GetLuckyBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
+            2 => new DanskeSpilBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
+            3 => new NordicBetBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
+            4 => new LeoVegasBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
             _ => throw new Exception("Unexpected case")
         };
 }
@@ -49,7 +49,7 @@ public class BookmakerActor<T> : ReceiveActor where T : BookmakerRequestBase
         ReceiveAsync<T>(async msg =>
         {
             await Simulate.PlaceBetAtBookMaker();
-            msg.ReceiveTime = DateTime.UtcNow;
+            msg.ComputationDoneTime = DateTime.UtcNow;
             Sender.Tell(msg);
         });
     }
@@ -124,7 +124,7 @@ public class SingleServerActor : ReceiveActor
         ReceiveAsync<BookmakerRequestBase>(async msg =>
         {
             await Simulate.PlaceBetAtBookMaker();
-            msg.ReceiveTime = DateTime.UtcNow;
+            msg.ComputationDoneTime = DateTime.UtcNow;
             Sender.Tell(msg);
         });
     }
@@ -151,7 +151,7 @@ public static class PlainServerProcessor
     public static async Task<BookmakerRequestBase> ProcessRequestAsync(BookmakerRequestBase req)
     {
         await Simulate.PlaceBetAtBookMaker();
-        req.ReceiveTime = DateTime.UtcNow;
+        req.ComputationDoneTime = DateTime.UtcNow;
         return req;
     }
 }
@@ -169,7 +169,7 @@ public static class BenchmarkHelper
         for (int i = 0; i < totalRequests; i++)
             tasks[i] = processFunc(i);
         var responses = await Task.WhenAll(tasks);
-        return responses.Select(m => (m.ReceiveTime - m.SendTime).TotalMilliseconds).ToList();
+        return responses.Select(m => (m.ComputationDoneTime - m.InitiatedTime).TotalMilliseconds).ToList();
     }
 }
 
@@ -180,7 +180,7 @@ public class DistributedBenchmark
     private ActorSystem system;
     private IActorRef router;
 
-    [Params(100, 1000, 10000)]
+    [Params(100, 1000)]
     public int TotalRequests { get; set; }
 
     [GlobalSetup]
@@ -204,7 +204,7 @@ public class SingleServerBenchmark
     private ActorSystem system;
     private IActorRef server;
 
-    [Params(100, 1000, 10000)]
+    [Params(100, 1000)]
     public int TotalRequests { get; set; }
 
     [GlobalSetup]
@@ -225,7 +225,7 @@ public class SingleServerBenchmark
 [MemoryDiagnoser]
 public class PlainServerBenchmark
 {
-    [Params(100, 1000, 10000)]
+    [Params(100, 1000)]
     public int TotalRequests { get; set; }
 
     [Benchmark]
@@ -244,7 +244,7 @@ public static class CustomBenchmarkRunner
     public static async Task RunAllCustomBenchmarks()
     {
         // Define the request counts you want to test.
-        int[] requestCounts = { 100, 1000, 10000 };
+        int[] requestCounts = [100, 1000, 10000];
 
         Console.WriteLine("=== Custom Benchmark Results ===");
         Console.WriteLine("Approach\tRequests\tFastest (ms)\tSlowest (ms)\tAverage (ms)\tQ25 (ms)\tMedian (ms)\tQ75 (ms)");
@@ -352,15 +352,16 @@ public class BetPlacementBenchmarking
 {
     public static async Task Main(string[] args)
     {
-        // Run BenchmarkDotNet tests.
+        /*/ Run BenchmarkDotNet tests.
         Console.WriteLine("=== Distributed Approach ===");
         BenchmarkRunner.Run<DistributedBenchmark>();
         Console.WriteLine("=== Single Server Approach ===");
         BenchmarkRunner.Run<SingleServerBenchmark>();
         Console.WriteLine("=== Plain Server Approach (No Akka.NET) ===");
         BenchmarkRunner.Run<PlainServerBenchmark>();
-
+        */
         // Run custom benchmarks and print summary statistics.
+        Console.WriteLine("=== Custom Benchmarks ===");
         await CustomBenchmarkRunner.RunAllCustomBenchmarks();
     }
 }
@@ -371,6 +372,6 @@ public static class Simulate
 {
     public static async Task PlaceBetAtBookMaker()
     {
-        await Task.Delay(2);
+        await Task.Delay(200);
     } 
 }
