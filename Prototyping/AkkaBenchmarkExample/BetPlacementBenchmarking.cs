@@ -48,7 +48,7 @@ public class BookmakerActor<T> : ReceiveActor where T : BookmakerRequestBase
         // Use ReceiveAsync to simulate work.
         ReceiveAsync<T>(async msg =>
         {
-            await Task.Delay(TimeSpan.FromSeconds(2));
+            await Simulate.PlaceBetAtBookMaker();
             msg.ReceiveTime = DateTime.UtcNow;
             Sender.Tell(msg);
         });
@@ -123,7 +123,7 @@ public class SingleServerActor : ReceiveActor
     {
         ReceiveAsync<BookmakerRequestBase>(async msg =>
         {
-            await Task.Delay(TimeSpan.FromSeconds(2));
+            await Simulate.PlaceBetAtBookMaker();
             msg.ReceiveTime = DateTime.UtcNow;
             Sender.Tell(msg);
         });
@@ -150,7 +150,7 @@ public static class PlainServerProcessor
 {
     public static async Task<BookmakerRequestBase> ProcessRequestAsync(BookmakerRequestBase req)
     {
-        await Task.Delay(TimeSpan.FromSeconds(2));
+        await Simulate.PlaceBetAtBookMaker();
         req.ReceiveTime = DateTime.UtcNow;
         return req;
     }
@@ -366,3 +366,11 @@ public class BetPlacementBenchmarking
 }
 
 #endregion
+
+public static class Simulate
+{
+    public static async Task PlaceBetAtBookMaker()
+    {
+        await Task.Delay(2);
+    } 
+}
