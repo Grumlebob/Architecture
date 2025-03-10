@@ -30,17 +30,27 @@ namespace AkkaBenchmarkExample
     public static class BookmakerRequestFactory
     {
         public static BookmakerRequestBase Create(int i) =>
-            (i % 2) switch
+            (i % 11) switch
             {
+                // Uneven load. Then times the traffic to GetLuckyBookmaker
                 0 => new BetanoBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
                 1 => new GetLuckyBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
+                2 => new GetLuckyBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
+                3 => new GetLuckyBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
+                4 => new GetLuckyBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
+                5 => new GetLuckyBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
+                6 => new GetLuckyBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
+                7 => new GetLuckyBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
+                8 => new GetLuckyBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
+                9 => new GetLuckyBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
+                10 => new GetLuckyBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
                 _ => throw new Exception("Unexpected case")
             };
     }
 
     #endregion
 
-    #region Distributed Approach (Actors Simulation)
+    #region Actor Approach (Actors Simulation)
 
     // Simulated router that in a real system would route to remote actors.
     public static class ActorProcessor
@@ -209,15 +219,15 @@ namespace AkkaBenchmarkExample
         }
     }
 
-    // Distributed benchmark using the router (actor-based) approach.
+    // Actor benchmark using the router (actor-based) approach.
     [MemoryDiagnoser]
-    public class DistributedBenchmark
+    public class ActorBenchmark
     {
         [Params(100, 1000)]
         public int TotalRequests { get; set; }
 
         [Benchmark]
-        public async Task<List<double>> RunDistributedBenchmark()
+        public async Task<List<double>> RunActorBenchmark()
         {
             return await BenchmarkHelper.RunBenchmarkTest(
                 i => ActorProcessor.ProcessRequestAsync(BookmakerRequestFactory.Create(i)),
@@ -301,15 +311,15 @@ namespace AkkaBenchmarkExample
 
             foreach (var count in requestCounts)
             {
-                var distStats = await RunCustomDistributedBenchmark(count);
+                var distStats = await RunCustomActorBenchmark(count);
                 var lbStats = await RunCustomLoadBalancerBenchmark(count);
 
-                Console.WriteLine($"Distributed\t{count}\t\t{distStats.Fastest:F2}\t\t{distStats.Slowest:F2}\t\t{distStats.Average:F2}\t\t{distStats.Q25:F2}\t\t{distStats.Median:F2}\t\t{distStats.Q75:F2}");
+                Console.WriteLine($"Actor\t\t{count}\t\t{distStats.Fastest:F2}\t\t{distStats.Slowest:F2}\t\t{distStats.Average:F2}\t\t{distStats.Q25:F2}\t\t{distStats.Median:F2}\t\t{distStats.Q75:F2}");
                 Console.WriteLine($"LoadBalancer\t{count}\t\t{lbStats.Fastest:F2}\t\t{lbStats.Slowest:F2}\t\t{lbStats.Average:F2}\t\t{lbStats.Q25:F2}\t\t{lbStats.Median:F2}\t\t{lbStats.Q75:F2}");
             }
         }
 
-        private static async Task<Stats> RunCustomDistributedBenchmark(int totalRequests)
+        private static async Task<Stats> RunCustomActorBenchmark(int totalRequests)
         {
             var delays = await BenchmarkHelper.RunBenchmarkTest(
                 i => ActorProcessor.ProcessRequestAsync(BookmakerRequestFactory.Create(i)),
@@ -335,8 +345,8 @@ namespace AkkaBenchmarkExample
         public static async Task Main(string[] args)
         {
             // Optionally run BenchmarkDotNet tests:
-            // Console.WriteLine("=== Distributed Approach ===");
-            // BenchmarkRunner.Run<DistributedBenchmark>();
+            // Console.WriteLine("=== Actor Approach ===");
+            // BenchmarkRunner.Run<ActorBenchmark>();
             // Console.WriteLine("=== Load Balancer Approach ===");
             // BenchmarkRunner.Run<LoadBalancerBenchmark>();
 
