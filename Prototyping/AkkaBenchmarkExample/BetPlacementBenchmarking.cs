@@ -255,7 +255,7 @@ namespace AkkaBenchmarkExample
 
         public static async Task RunAllCustomBenchmarks()
         {
-            int[] requestCounts = { 100, 1000, 10000 };
+            int[] requestCounts = { 100, 1000 };
 
             Console.WriteLine("=== Custom Benchmark Results ===");
             Console.WriteLine("Approach\tRequests\tFastest (ms)\tSlowest (ms)\tAverage (ms)\tQ25 (ms)\tMedian (ms)\tQ75 (ms)");
