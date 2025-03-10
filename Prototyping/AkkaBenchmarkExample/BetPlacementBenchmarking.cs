@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
@@ -18,13 +19,18 @@ namespace AkkaBenchmarkExample
         public DateTime ComputationDoneTime { get; set; }
     }
 
+    public static class IPHelper
+    {
+        public static List<string> IPs { get; private set; } = new List<string> { "192.168.0.138", "192.168.0.170" }; // Thor, Jacob
+    }
+
     public sealed class BetanoBookmaker : BookmakerRequestBase { }
     public sealed class GetLuckyBookmaker : BookmakerRequestBase { }
 
     public static class BookmakerRequestFactory
     {
         public static BookmakerRequestBase Create(int i) =>
-            (i % 5) switch
+            (i % 2) switch
             {
                 0 => new BetanoBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
                 1 => new GetLuckyBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
@@ -37,17 +43,17 @@ namespace AkkaBenchmarkExample
     #region Distributed Approach (Actors Simulation)
 
     // Simulated router that in a real system would route to remote actors.
-    public class BookmakerRouter
+    public static class ActorProcessor
     {
         // In this simulation the router chooses the “actor” by calling a network method.
-        public async Task<BookmakerRequestBase> InvokeAsync(BookmakerRequestBase request)
+        public static async Task<BookmakerRequestBase> ProcessRequestAsync(BookmakerRequestBase request)
         {
             // Based on the request type, choose the corresponding remote IP/port.
             // For simplicity, we assume each actor is on a different laptop.
             string ip = request switch
             {
-                BetanoBookmaker _ => "192.168.1.101",  // Laptop A IP for Betano actor
-                GetLuckyBookmaker _ => "192.168.1.102",  // Laptop B IP for GetLucky actor
+                BetanoBookmaker _ => IPHelper.IPs[0],
+                GetLuckyBookmaker _ => IPHelper.IPs[1],
                 _ => throw new ArgumentOutOfRangeException()
             };
 
@@ -55,12 +61,6 @@ namespace AkkaBenchmarkExample
             int port = 5000;
             return await NetworkProcessor.SendRequestAsync(ip, port, request);
         }
-    }
-
-    // Factory for the distributed actor system.
-    public static class DistributedActorSystemFactory
-    {
-        public static BookmakerRouter CreateRouter() => new BookmakerRouter();
     }
 
     #endregion
@@ -73,8 +73,8 @@ namespace AkkaBenchmarkExample
         // List of remote servers (using two extra laptops, different ports if needed).
         private static readonly List<RemoteServer> Servers = new List<RemoteServer>
         {
-            new RemoteServer("192.168.1.103", 5001), // Laptop C
-            new RemoteServer("192.168.1.104", 5001)  // Laptop D
+            new RemoteServer(IPHelper.IPs[0], 5000),
+            new RemoteServer(IPHelper.IPs[1], 5000)
         };
 
         public static async Task<BookmakerRequestBase> ProcessRequestAsync(BookmakerRequestBase request)
@@ -118,24 +118,61 @@ namespace AkkaBenchmarkExample
     // NetworkProcessor handles sending requests and receiving responses over TCP.
     public static class NetworkProcessor
     {
+        // Cache persistent connections: key is "ip:port"
+        private static readonly ConcurrentDictionary<string, (TcpClient client, NetworkStream stream, SemaphoreSlim semaphore)> connections
+            = new ConcurrentDictionary<string, (TcpClient, NetworkStream, SemaphoreSlim)>();
+
+        // Helper to get or create a persistent connection.
+        private static async Task<(TcpClient client, NetworkStream stream, SemaphoreSlim semaphore)> GetOrCreateConnectionAsync(string ipAddress, int port)
+        {
+            string key = $"{ipAddress}:{port}";
+
+            // Try to get an existing connection.
+            if (connections.TryGetValue(key, out var existingConnection))
+            {
+                if (existingConnection.client.Connected)
+                    return existingConnection;
+                else
+                    connections.TryRemove(key, out _);
+            }
+
+            // Create a new connection.
+            var client = new TcpClient();
+            await client.ConnectAsync(ipAddress, port);
+            var stream = client.GetStream();
+            var sem = new SemaphoreSlim(1, 1);
+            var newConnection = (client, stream, sem);
+
+            // Use GetOrAdd to ensure only one connection is created per key.
+            var connectionFromDict = connections.GetOrAdd(key, newConnection);
+            if (connectionFromDict.client != client)
+            {
+                // Another thread already created a connection. Dispose this one.
+                client.Dispose();
+            }
+            return connectionFromDict;
+        }
+
         public static async Task<BookmakerRequestBase> SendRequestAsync(string ipAddress, int port, BookmakerRequestBase request)
         {
+            var connection = await GetOrCreateConnectionAsync(ipAddress, port);
+
+            // Ensure one request uses the connection at a time.
+            await connection.semaphore.WaitAsync();
             try
             {
-                using TcpClient client = new TcpClient();
-                await client.ConnectAsync(ipAddress, port);
-                using NetworkStream stream = client.GetStream();
-
-                // Prepare a simple message (you could use JSON or another serialization format)
+                // Prepare the message (you could use JSON or another serialization format)
                 string message = $"{request.Id}|{request.GetType().Name}|{request.InitiatedTime:o}";
                 byte[] data = Encoding.UTF8.GetBytes(message);
-                await stream.WriteAsync(data, 0, data.Length);
+                await connection.stream.WriteAsync(data, 0, data.Length);
+                await connection.stream.FlushAsync();
 
                 // Read response (assuming the response is short)
                 byte[] buffer = new byte[1024];
-                int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
+                int bytesRead = await connection.stream.ReadAsync(buffer, 0, buffer.Length);
                 string response = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                Console.WriteLine($"Response from {ipAddress}:{port} -> {response}");
+                // Optionally, you can log the response:
+                // Console.WriteLine($"Response from {ipAddress}:{port} -> {response}");
 
                 // Mark the completion time.
                 request.ComputationDoneTime = DateTime.UtcNow;
@@ -144,7 +181,14 @@ namespace AkkaBenchmarkExample
             catch (Exception ex)
             {
                 Console.WriteLine($"Error contacting {ipAddress}:{port} - {ex.Message}");
+                // On error, remove the connection from the cache so that it can be reestablished.
+                string key = $"{ipAddress}:{port}";
+                connections.TryRemove(key, out _);
                 throw;
+            }
+            finally
+            {
+                connection.semaphore.Release();
             }
         }
     }
@@ -172,16 +216,11 @@ namespace AkkaBenchmarkExample
         [Params(100, 1000)]
         public int TotalRequests { get; set; }
 
-        private BookmakerRouter router;
-
-        [GlobalSetup]
-        public void Setup() => router = DistributedActorSystemFactory.CreateRouter();
-
         [Benchmark]
         public async Task<List<double>> RunDistributedBenchmark()
         {
             return await BenchmarkHelper.RunBenchmarkTest(
-                i => router.InvokeAsync(BookmakerRequestFactory.Create(i)),
+                i => ActorProcessor.ProcessRequestAsync(BookmakerRequestFactory.Create(i)),
                 TotalRequests);
         }
     }
@@ -255,7 +294,7 @@ namespace AkkaBenchmarkExample
 
         public static async Task RunAllCustomBenchmarks()
         {
-            int[] requestCounts = { 100, 1000 };
+            int[] requestCounts = { 100, 1000, 10000 };
 
             Console.WriteLine("=== Custom Benchmark Results ===");
             Console.WriteLine("Approach\tRequests\tFastest (ms)\tSlowest (ms)\tAverage (ms)\tQ25 (ms)\tMedian (ms)\tQ75 (ms)");
@@ -273,7 +312,7 @@ namespace AkkaBenchmarkExample
         private static async Task<Stats> RunCustomDistributedBenchmark(int totalRequests)
         {
             var delays = await BenchmarkHelper.RunBenchmarkTest(
-                i => DistributedActorProcessor.ProcessRequestAsync(BookmakerRequestFactory.Create(i)),
+                i => ActorProcessor.ProcessRequestAsync(BookmakerRequestFactory.Create(i)),
                 totalRequests);
             return ComputeStats(delays);
         }
@@ -284,16 +323,6 @@ namespace AkkaBenchmarkExample
                 i => LoadBalancerProcessor.ProcessRequestAsync(BookmakerRequestFactory.Create(i)),
                 totalRequests);
             return ComputeStats(delays);
-        }
-    }
-
-    // Simulated distributed processor that now uses the network instead of Task.Delay.
-    public static class DistributedActorProcessor
-    {
-        public static async Task<BookmakerRequestBase> ProcessRequestAsync(BookmakerRequestBase request)
-        {
-            // For the distributed approach, assume the remote server is on port 5000.
-            return await NetworkProcessor.SendRequestAsync("192.168.1.101", 5000, request);
         }
     }
 
