@@ -7,3 +7,19 @@ LoadBalancer    1000            2,28            1273,27         646,01          
 
 Actor           10000           3,25            26505,02        11940,40        4215,14         11515,58        19142,97
 LoadBalancer    10000           9,37            13584,77        7132,18         4032,39         7340,09         10421,72
+
+
+
+
+From the benchmarker:
+
+| Method                  | TotalRequests | Mean       | Error    | StdDev   | Allocated  |
+|------------------------ |-------------- |-----------:|---------:|---------:|-----------:|
+| RunActorBenchmark       | 100           |   254.1 ms |  5.73 ms | 16.53 ms |  204.23 KB |
+| RunActorBenchmark       | 1000          | 2,308.8 ms | 44.52 ms | 41.65 ms | 2045.02 KB |
+
+
+| Method                   | TotalRequests | Mean       | Error    | StdDev    | Allocated  |
+|------------------------- |-------------- |-----------:|---------:|----------:|-----------:|
+| RunLoadBalancerBenchmark | 100           |   248.9 ms | 23.58 ms |  66.13 ms |  228.59 KB |
+| RunLoadBalancerBenchmark | 1000          | 2,098.3 ms | 44.36 ms | 128.70 ms | 2287.53 KB |
