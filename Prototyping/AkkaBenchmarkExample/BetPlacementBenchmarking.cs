@@ -1,6 +1,6 @@
-﻿using Akka.Actor;
+﻿//using Akka.Actor;
+using System.Security.Cryptography.X509Certificates;
 using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Running;
 
 namespace AkkaBenchmarkExample;
 
@@ -40,121 +40,60 @@ public static class BookmakerRequestFactory
 
 #region Distributed Approach Actors
 
-// Generic actor for a specific bookmaker that simulates 2 seconds of work.
-public class BookmakerActor<T> : ReceiveActor where T : BookmakerRequestBase
-{
-    public BookmakerActor()
-    {
-        // Use ReceiveAsync to simulate work.
-        ReceiveAsync<T>(async msg =>
-        {
-            await Simulate.PlaceBetAtBookMaker();
-            msg.ComputationDoneTime = DateTime.UtcNow;
-            Sender.Tell(msg);
-        });
-    }
-}
+
 
 // Router actor that forwards requests to the correct bookmaker actor.
-public class BookmakerRouter : ReceiveActor
+public class BookmakerRouter
 {
     public BookmakerRouter(
-        IActorRef betanoActor,
-        IActorRef getLuckyActor,
-        IActorRef danskeSpilActor,
-        IActorRef nordicBetActor,
-        IActorRef leoVegasActor)
+        string betanoActor,
+        string getLuckyActor,
+        string danskeSpilActor,
+        string nordicBetActor,
+        string leoVegasActor)
     {
-        Receive<BookmakerRequestBase>(msg =>
-        {
-            switch (msg)
-            {
-                case BetanoBookmaker _:
-                    betanoActor.Forward(msg);
-                    break;
-                case GetLuckyBookmaker _:
-                    getLuckyActor.Forward(msg);
-                    break;
-                case DanskeSpilBookmaker _:
-                    danskeSpilActor.Forward(msg);
-                    break;
-                case NordicBetBookmaker _:
-                    nordicBetActor.Forward(msg);
-                    break;
-                case LeoVegasBookmaker _:
-                    leoVegasActor.Forward(msg);
-                    break;
-                default:
-                    Unhandled(msg);
-                    break;
-            }
-        });
+        // set up connections to actors
     }
+    public void Invoke(object msg)
+    {
+        // Create five dedicated actors for each bookmaker.
+        switch (msg)
+        {
+            case BetanoBookmaker _:
+                //send to Betano Actor
+                break;
+            case GetLuckyBookmaker _:
+                //send to GetLucky Actor
+                break;
+            case DanskeSpilBookmaker _:
+                // send to DanskeSpil Actor
+                break;
+            case NordicBetBookmaker _:
+                //send to NordicBet Actor
+                break;
+            case LeoVegasBookmaker _:
+                // send to LeoVegas Actor
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+
+    }
+
 }
 
 // Factory for the distributed approach (router with five dedicated actors).
 public static class DistributedActorSystemFactory
 {
-    public static (ActorSystem System, IActorRef Router) CreateSystemAndRouter()
-    {
-        var system = ActorSystem.Create("DistributedBookmakerSystem");
 
-        var betanoActor = system.ActorOf(Props.Create(() => new BookmakerActor<BetanoBookmaker>()), "betanoActor");
-        var getLuckyActor = system.ActorOf(Props.Create(() => new BookmakerActor<GetLuckyBookmaker>()), "getLuckyActor");
-        var danskeSpilActor = system.ActorOf(Props.Create(() => new BookmakerActor<DanskeSpilBookmaker>()), "danskeSpilActor");
-        var nordicBetActor = system.ActorOf(Props.Create(() => new BookmakerActor<NordicBetBookmaker>()), "nordicBetActor");
-        var leoVegasActor = system.ActorOf(Props.Create(() => new BookmakerActor<LeoVegasBookmaker>()), "leoVegasActor");
-
-        var router = system.ActorOf(Props.Create(() => new BookmakerRouter(
-            betanoActor, getLuckyActor, danskeSpilActor, nordicBetActor, leoVegasActor)), "router");
-
-        return (system, router);
-    }
 }
+
 
 #endregion
 
-#region Single Server Approach Actors
+#region LoadBalancer. Send to the least busy server.
 
-// A single server actor that handles all requests and simulates 2 seconds of work per request.
-public class SingleServerActor : ReceiveActor
-{
-    public SingleServerActor()
-    {
-        ReceiveAsync<BookmakerRequestBase>(async msg =>
-        {
-            await Simulate.PlaceBetAtBookMaker();
-            msg.ComputationDoneTime = DateTime.UtcNow;
-            Sender.Tell(msg);
-        });
-    }
-}
 
-// Factory for the single server approach.
-public static class SingleServerActorSystemFactory
-{
-    public static (ActorSystem System, IActorRef Server) CreateSystemAndServer()
-    {
-        var system = ActorSystem.Create("SingleServerSystem");
-        var server = system.ActorOf(Props.Create(() => new SingleServerActor()), "server");
-        return (system, server);
-    }
-}
-
-#endregion
-
-#region Plain Server Approach (No Akka.NET)
-
-// A simple in-memory processor that simulates 2 seconds of work per request.
-public static class PlainServerProcessor
-{
-    public static async Task<BookmakerRequestBase> ProcessRequestAsync(BookmakerRequestBase req)
-    {
-        await Simulate.PlaceBetAtBookMaker();
-        req.ComputationDoneTime = DateTime.UtcNow;
-        return req;
-    }
-}
 
 #endregion
 
@@ -177,62 +116,39 @@ public static class BenchmarkHelper
 [MemoryDiagnoser]
 public class DistributedBenchmark
 {
-    private ActorSystem system;
-    private IActorRef router;
 
     [Params(100, 1000)]
     public int TotalRequests { get; set; }
 
-    [GlobalSetup]
-    public void Setup() =>
-        (system, router) = DistributedActorSystemFactory.CreateSystemAndRouter();
+    //[GlobalSetup]
+    //public void Setup() => 
 
-    [GlobalCleanup]
-    public void Cleanup() =>
-        system.Terminate().Wait();
+    //[GlobalCleanup]
+    //public void Cleanup() =>
 
-    [Benchmark]
-    public async Task<List<double>> RunDistributedBenchmark() =>
-        await BenchmarkHelper.RunBenchmarkTest(
-            i => router.Ask<BookmakerRequestBase>(BookmakerRequestFactory.Create(i)), TotalRequests);
+    //[Benchmark]
+    //public async Task<List<double>> RunDistributedBenchmark() =>
 }
 
 // Single server benchmark using a single actor.
 [MemoryDiagnoser]
-public class SingleServerBenchmark
+public class LoadBalancerBenchmark
 {
-    private ActorSystem system;
-    private IActorRef server;
 
     [Params(100, 1000)]
     public int TotalRequests { get; set; }
 
-    [GlobalSetup]
-    public void Setup() =>
-        (system, server) = SingleServerActorSystemFactory.CreateSystemAndServer();
+    //[GlobalSetup]
+    //public void Setup() =>
 
-    [GlobalCleanup]
-    public void Cleanup() =>
-        system.Terminate().Wait();
+    //[GlobalCleanup]
+    //public void Cleanup() =>
 
-    [Benchmark]
-    public async Task<List<double>> RunSingleServerBenchmark() =>
-        await BenchmarkHelper.RunBenchmarkTest(
-            i => server.Ask<BookmakerRequestBase>(BookmakerRequestFactory.Create(i)), TotalRequests);
+    //[Benchmark]
+    //public async Task<List<double>> RunLoadBalancerBenchmark() =>
 }
 
-// Plain server benchmark without using Akka.NET.
-[MemoryDiagnoser]
-public class PlainServerBenchmark
-{
-    [Params(100, 1000)]
-    public int TotalRequests { get; set; }
 
-    [Benchmark]
-    public async Task<List<double>> RunPlainServerBenchmark() =>
-        await BenchmarkHelper.RunBenchmarkTest(
-            i => PlainServerProcessor.ProcessRequestAsync(BookmakerRequestFactory.Create(i)), TotalRequests);
-}
 
 #endregion
 
@@ -255,13 +171,11 @@ public static class CustomBenchmarkRunner
             // Distributed Approach
             var distStats = await RunCustomDistributedBenchmark(count);
             // Single Server Approach
-            var singleStats = await RunCustomSingleServerBenchmark(count);
-            // Plain Server Approach
-            var plainStats = await RunCustomPlainServerBenchmark(count);
+            var loadBalancerStats = await RunCustomLoadBalancerBenchmark(count);
 
             Console.WriteLine($"Distributed\t{count}\t\t{distStats.Fastest:F2}\t\t{distStats.Slowest:F2}\t\t{distStats.Average:F2}\t\t{distStats.Q25:F2}\t\t{distStats.Median:F2}\t\t{distStats.Q75:F2}");
-            Console.WriteLine($"SingleSrv\t{count}\t\t{singleStats.Fastest:F2}\t\t{singleStats.Slowest:F2}\t\t{singleStats.Average:F2}\t\t{singleStats.Q25:F2}\t\t{singleStats.Median:F2}\t\t{singleStats.Q75:F2}");
-            Console.WriteLine($"PlainSrv\t{count}\t\t{plainStats.Fastest:F2}\t\t{plainStats.Slowest:F2}\t\t{plainStats.Average:F2}\t\t{plainStats.Q25:F2}\t\t{plainStats.Median:F2}\t\t{plainStats.Q75:F2}");
+
+            Console.WriteLine($"SingleSrv\t{count}\t\t{loadBalancerStats.Fastest:F2}\t\t{loadBalancerStats.Slowest:F2}\t\t{loadBalancerStats.Average:F2}\t\t{loadBalancerStats.Q25:F2}\t\t{loadBalancerStats.Median:F2}\t\t{loadBalancerStats.Q75:F2}");
         }
     }
 
@@ -316,31 +230,23 @@ public static class CustomBenchmarkRunner
     // Distributed approach custom benchmark.
     private static async Task<Stats> RunCustomDistributedBenchmark(int totalRequests)
     {
-        var (system, router) = DistributedActorSystemFactory.CreateSystemAndRouter();
-        var delays = await BenchmarkHelper.RunBenchmarkTest(
-            i => router.Ask<BookmakerRequestBase>(BookmakerRequestFactory.Create(i)), totalRequests);
-        var stats = ComputeStats(delays);
-        await system.Terminate();
-        return stats;
+        //...
+        //return stats;
     }
 
     // Single server approach custom benchmark.
-    private static async Task<Stats> RunCustomSingleServerBenchmark(int totalRequests)
+    private static async Task<Stats> RunCustomLoadBalancerBenchmark(int totalRequests)
     {
-        var (system, server) = SingleServerActorSystemFactory.CreateSystemAndServer();
-        var delays = await BenchmarkHelper.RunBenchmarkTest(
-            i => server.Ask<BookmakerRequestBase>(BookmakerRequestFactory.Create(i)), totalRequests);
-        var stats = ComputeStats(delays);
-        await system.Terminate();
-        return stats;
+        //...
+        //return stats;
     }
 
     // Plain server approach custom benchmark.
     private static async Task<Stats> RunCustomPlainServerBenchmark(int totalRequests)
     {
-        var delays = await BenchmarkHelper.RunBenchmarkTest(
-            i => PlainServerProcessor.ProcessRequestAsync(BookmakerRequestFactory.Create(i)), totalRequests);
-        return ComputeStats(delays);
+        //var delays = await BenchmarkHelper.RunBenchmarkTest(
+        //    i => PlainServerProcessor.ProcessRequestAsync(BookmakerRequestFactory.Create(i)), totalRequests);
+        //return ComputeStats(delays);
     }
 }
 
@@ -356,9 +262,7 @@ public class BetPlacementBenchmarking
         Console.WriteLine("=== Distributed Approach ===");
         BenchmarkRunner.Run<DistributedBenchmark>();
         Console.WriteLine("=== Single Server Approach ===");
-        BenchmarkRunner.Run<SingleServerBenchmark>();
-        Console.WriteLine("=== Plain Server Approach (No Akka.NET) ===");
-        BenchmarkRunner.Run<PlainServerBenchmark>();
+        BenchmarkRunner.Run<LoadBalancerBenchmark>();
         */
         // Run custom benchmarks and print summary statistics.
         Console.WriteLine("=== Custom Benchmarks ===");
@@ -367,11 +271,3 @@ public class BetPlacementBenchmarking
 }
 
 #endregion
-
-public static class Simulate
-{
-    public static async Task PlaceBetAtBookMaker()
-    {
-        await Task.Delay(200);
-    } 
-}
