@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
+using System.Text;
 using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
@@ -9,7 +11,6 @@ namespace AkkaBenchmarkExample
 {
     #region Bookmaker Request Types
 
-    // Abstract base class with common properties.
     public abstract class BookmakerRequestBase
     {
         public int Id { get; set; }
@@ -17,14 +18,9 @@ namespace AkkaBenchmarkExample
         public DateTime ComputationDoneTime { get; set; }
     }
 
-    // Five distinct bookmaker request types.
     public sealed class BetanoBookmaker : BookmakerRequestBase { }
     public sealed class GetLuckyBookmaker : BookmakerRequestBase { }
-    public sealed class DanskeSpilBookmaker : BookmakerRequestBase { }
-    public sealed class NordicBetBookmaker : BookmakerRequestBase { }
-    public sealed class LeoVegasBookmaker : BookmakerRequestBase { }
 
-    // Factory helper to create requests based on an index.
     public static class BookmakerRequestFactory
     {
         public static BookmakerRequestBase Create(int i) =>
@@ -32,9 +28,6 @@ namespace AkkaBenchmarkExample
             {
                 0 => new BetanoBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
                 1 => new GetLuckyBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
-                2 => new DanskeSpilBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
-                3 => new NordicBetBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
-                4 => new LeoVegasBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
                 _ => throw new Exception("Unexpected case")
             };
     }
@@ -44,57 +37,30 @@ namespace AkkaBenchmarkExample
     #region Distributed Approach (Actors Simulation)
 
     // Simulated router that in a real system would route to remote actors.
-    public class ActorRouter
+    public class BookmakerRouter
     {
-        // The constructor would normally initialize connections to remote actors.
-        public ActorRouter(
-            string betanoActor,
-            string getLuckyActor,
-            string danskeSpilActor,
-            string nordicBetActor,
-            string leoVegasActor)
+        // In this simulation the router chooses the “actor” by calling a network method.
+        public async Task<BookmakerRequestBase> InvokeAsync(BookmakerRequestBase request)
         {
-            // Set up connections to remote actors (simulation)
-        }
-
-        // For simulation we simply switch based on the type.
-        public Task<BookmakerRequestBase> InvokeAsync(BookmakerRequestBase request)
-        {
-            // In a real actor system, you’d send the request to the proper actor.
-            // Here we simulate by calling a dedicated method.
-            return request switch
+            // Based on the request type, choose the corresponding remote IP/port.
+            // For simplicity, we assume each actor is on a different laptop.
+            string ip = request switch
             {
-                BetanoBookmaker _ => DistributedActorProcessor.ProcessRequestAsync(request),
-                GetLuckyBookmaker _ => DistributedActorProcessor.ProcessRequestAsync(request),
-                DanskeSpilBookmaker _ => DistributedActorProcessor.ProcessRequestAsync(request),
-                NordicBetBookmaker _ => DistributedActorProcessor.ProcessRequestAsync(request),
-                LeoVegasBookmaker _ => DistributedActorProcessor.ProcessRequestAsync(request),
+                BetanoBookmaker _ => "192.168.1.101",  // Laptop A IP for Betano actor
+                GetLuckyBookmaker _ => "192.168.1.102",  // Laptop B IP for GetLucky actor
                 _ => throw new ArgumentOutOfRangeException()
             };
+
+            // Assume each remote laptop listens on port 5000 for the actor-based messages.
+            int port = 5000;
+            return await NetworkProcessor.SendRequestAsync(ip, port, request);
         }
     }
 
-    // Simulated remote processing for the actor approach.
-    public static class DistributedActorProcessor
-    {
-        public static async Task<BookmakerRequestBase> ProcessRequestAsync(BookmakerRequestBase request)
-        {
-            // Simulate network delay (actors are on remote machines)
-            int delay = Random.Shared.Next(50, 150); // delay in milliseconds
-            await Task.Delay(delay);
-            request.ComputationDoneTime = DateTime.UtcNow;
-            return request;
-        }
-    }
-
-    // A factory for the distributed actor system (could return a configured router)
+    // Factory for the distributed actor system.
     public static class DistributedActorSystemFactory
     {
-        public static ActorRouter CreateRouter()
-        {
-            // In a real system these would be IP addresses/actor paths
-            return new ActorRouter("192.168.1.2", "192.168.1.3", "192.168.1.4", "192.168.1.5", "192.168.1.6");
-        }
+        public static BookmakerRouter CreateRouter() => new BookmakerRouter();
     }
 
     #endregion
@@ -104,17 +70,16 @@ namespace AkkaBenchmarkExample
     // Simulated load balancer that forwards requests to the least busy server.
     public static class LoadBalancerProcessor
     {
-        // Simulate a load balancer with multiple remote servers.
+        // List of remote servers (using two extra laptops, different ports if needed).
         private static readonly List<RemoteServer> Servers = new List<RemoteServer>
         {
-            new RemoteServer("192.168.1.7"),
-            new RemoteServer("192.168.1.8")
+            new RemoteServer("192.168.1.103", 5001), // Laptop C
+            new RemoteServer("192.168.1.104", 5001)  // Laptop D
         };
 
         public static async Task<BookmakerRequestBase> ProcessRequestAsync(BookmakerRequestBase request)
         {
-            // Choose the least busy server (for simulation we simply choose one at random)
-            // In a real system, you would check current load metrics.
+            // For this simulation, we choose the server with the least current load.
             RemoteServer chosenServer = Servers.OrderBy(s => s.CurrentLoad).First();
             chosenServer.IncrementLoad();
             var result = await chosenServer.ProcessRequestAsync(request);
@@ -123,24 +88,23 @@ namespace AkkaBenchmarkExample
         }
     }
 
-    // Simulated remote server for the load balancer approach.
+    // RemoteServer uses TCP to communicate with a remote laptop.
     public class RemoteServer
     {
         public string IpAddress { get; }
+        public int Port { get; }
         public int CurrentLoad { get; private set; } = 0;
 
-        public RemoteServer(string ipAddress)
+        public RemoteServer(string ipAddress, int port)
         {
             IpAddress = ipAddress;
+            Port = port;
         }
 
         public async Task<BookmakerRequestBase> ProcessRequestAsync(BookmakerRequestBase request)
         {
-            // Simulate network delay with a slight additional load-balancing overhead.
-            int delay = Random.Shared.Next(60, 160);
-            await Task.Delay(delay);
-            request.ComputationDoneTime = DateTime.UtcNow;
-            return request;
+            // Use the shared network processor to send the request.
+            return await NetworkProcessor.SendRequestAsync(IpAddress, Port, request);
         }
 
         public void IncrementLoad() => CurrentLoad++;
@@ -149,9 +113,46 @@ namespace AkkaBenchmarkExample
 
     #endregion
 
+    #region Network Communication Helper
+
+    // NetworkProcessor handles sending requests and receiving responses over TCP.
+    public static class NetworkProcessor
+    {
+        public static async Task<BookmakerRequestBase> SendRequestAsync(string ipAddress, int port, BookmakerRequestBase request)
+        {
+            try
+            {
+                using TcpClient client = new TcpClient();
+                await client.ConnectAsync(ipAddress, port);
+                using NetworkStream stream = client.GetStream();
+
+                // Prepare a simple message (you could use JSON or another serialization format)
+                string message = $"{request.Id}|{request.GetType().Name}|{request.InitiatedTime:o}";
+                byte[] data = Encoding.UTF8.GetBytes(message);
+                await stream.WriteAsync(data, 0, data.Length);
+
+                // Read response (assuming the response is short)
+                byte[] buffer = new byte[1024];
+                int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
+                string response = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                Console.WriteLine($"Response from {ipAddress}:{port} -> {response}");
+
+                // Mark the completion time.
+                request.ComputationDoneTime = DateTime.UtcNow;
+                return request;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error contacting {ipAddress}:{port} - {ex.Message}");
+                throw;
+            }
+        }
+    }
+
+    #endregion
+
     #region Benchmark Classes (BenchmarkDotNet)
 
-    // Common helper for running a benchmark test.
     public static class BenchmarkHelper
     {
         public static async Task<List<double>> RunBenchmarkTest(Func<int, Task<BookmakerRequestBase>> processFunc, int totalRequests)
@@ -171,13 +172,10 @@ namespace AkkaBenchmarkExample
         [Params(100, 1000)]
         public int TotalRequests { get; set; }
 
-        private ActorRouter router;
+        private BookmakerRouter router;
 
         [GlobalSetup]
-        public void Setup()
-        {
-            router = DistributedActorSystemFactory.CreateRouter();
-        }
+        public void Setup() => router = DistributedActorSystemFactory.CreateRouter();
 
         [Benchmark]
         public async Task<List<double>> RunDistributedBenchmark()
@@ -188,7 +186,7 @@ namespace AkkaBenchmarkExample
         }
     }
 
-    // Single server benchmark using the load balancer approach.
+    // Load balancer benchmark using the load balancer approach.
     [MemoryDiagnoser]
     public class LoadBalancerBenchmark
     {
@@ -206,33 +204,10 @@ namespace AkkaBenchmarkExample
 
     #endregion
 
-    #region Custom Benchmark Runner (Custom Statistics)
+    #region Custom Benchmark Runner
 
     public static class CustomBenchmarkRunner
     {
-        // Run custom benchmarks for each approach and compute statistics.
-        public static async Task RunAllCustomBenchmarks()
-        {
-            // Define the request counts you want to test.
-            int[] requestCounts = { 100, 1000, 10000 };
-
-            Console.WriteLine("=== Custom Benchmark Results ===");
-            Console.WriteLine("Approach\tRequests\tFastest (ms)\tSlowest (ms)\tAverage (ms)\tQ25 (ms)\tMedian (ms)\tQ75 (ms)");
-
-            // Run benchmarks for each approach.
-            foreach (var count in requestCounts)
-            {
-                // Distributed Approach (Actors)
-                var distStats = await RunCustomDistributedBenchmark(count);
-                // Load Balancer Approach
-                var loadBalancerStats = await RunCustomLoadBalancerBenchmark(count);
-
-                Console.WriteLine($"Distributed\t{count}\t\t{distStats.Fastest:F2}\t\t{distStats.Slowest:F2}\t\t{distStats.Average:F2}\t\t{distStats.Q25:F2}\t\t{distStats.Median:F2}\t\t{distStats.Q75:F2}");
-                Console.WriteLine($"LoadBalancer\t{count}\t\t{loadBalancerStats.Fastest:F2}\t\t{loadBalancerStats.Slowest:F2}\t\t{loadBalancerStats.Average:F2}\t\t{loadBalancerStats.Q25:F2}\t\t{loadBalancerStats.Median:F2}\t\t{loadBalancerStats.Q75:F2}");
-            }
-        }
-
-        // Structure to hold statistics.
         public struct Stats
         {
             public double Fastest;
@@ -243,7 +218,6 @@ namespace AkkaBenchmarkExample
             public double Q75;
         }
 
-        // Compute statistics from a list of delays.
         public static Stats ComputeStats(List<double> delays)
         {
             delays.Sort();
@@ -266,7 +240,6 @@ namespace AkkaBenchmarkExample
             };
         }
 
-        // Get quantile from a sorted list.
         private static double GetQuantile(List<double> sorted, double p)
         {
             int n = sorted.Count;
@@ -280,7 +253,23 @@ namespace AkkaBenchmarkExample
                 return sorted[index];
         }
 
-        // Distributed approach custom benchmark.
+        public static async Task RunAllCustomBenchmarks()
+        {
+            int[] requestCounts = { 100, 1000, 10000 };
+
+            Console.WriteLine("=== Custom Benchmark Results ===");
+            Console.WriteLine("Approach\tRequests\tFastest (ms)\tSlowest (ms)\tAverage (ms)\tQ25 (ms)\tMedian (ms)\tQ75 (ms)");
+
+            foreach (var count in requestCounts)
+            {
+                var distStats = await RunCustomDistributedBenchmark(count);
+                var lbStats = await RunCustomLoadBalancerBenchmark(count);
+
+                Console.WriteLine($"Distributed\t{count}\t\t{distStats.Fastest:F2}\t\t{distStats.Slowest:F2}\t\t{distStats.Average:F2}\t\t{distStats.Q25:F2}\t\t{distStats.Median:F2}\t\t{distStats.Q75:F2}");
+                Console.WriteLine($"LoadBalancer\t{count}\t\t{lbStats.Fastest:F2}\t\t{lbStats.Slowest:F2}\t\t{lbStats.Average:F2}\t\t{lbStats.Q25:F2}\t\t{lbStats.Median:F2}\t\t{lbStats.Q75:F2}");
+            }
+        }
+
         private static async Task<Stats> RunCustomDistributedBenchmark(int totalRequests)
         {
             var delays = await BenchmarkHelper.RunBenchmarkTest(
@@ -289,13 +278,22 @@ namespace AkkaBenchmarkExample
             return ComputeStats(delays);
         }
 
-        // Load balancer approach custom benchmark.
         private static async Task<Stats> RunCustomLoadBalancerBenchmark(int totalRequests)
         {
             var delays = await BenchmarkHelper.RunBenchmarkTest(
                 i => LoadBalancerProcessor.ProcessRequestAsync(BookmakerRequestFactory.Create(i)),
                 totalRequests);
             return ComputeStats(delays);
+        }
+    }
+
+    // Simulated distributed processor that now uses the network instead of Task.Delay.
+    public static class DistributedActorProcessor
+    {
+        public static async Task<BookmakerRequestBase> ProcessRequestAsync(BookmakerRequestBase request)
+        {
+            // For the distributed approach, assume the remote server is on port 5000.
+            return await NetworkProcessor.SendRequestAsync("192.168.1.101", 5000, request);
         }
     }
 
