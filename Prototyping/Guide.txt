@@ -1,6 +1,6 @@
 The laptops:
 From folder Prototyping/RemoteMessageParsing
-dotnet run --project RemoteMessageParsing -- 5000
+dotnet run --project RemoteMessageServer -- 5000
 
 The main computer:
 In BetPlacementBenchmarking.cs make sure the ip's are set to the laptops's.
