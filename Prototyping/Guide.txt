@@ -5,4 +5,4 @@ To run benchmarks:
 
 The laptops:
 From folder Prototyping/RemoteMessageParsing
-dotnet run --project RemoteMessageParsing -- 5000
+dotnet run --project RemoteMessageServer -- 5000
