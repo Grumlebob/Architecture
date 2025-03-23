@@ -53,6 +53,6 @@ public class Program
         // Start the client to send numbers.
         // use ip of the "microkernel" computer running benchmarks
         var client = new ForwardClient("192.168.0.69", 5000);
-        await client.SendNumbersAsync(10000);
+        await client.SendNumbersAsync(100000);
     }
 }

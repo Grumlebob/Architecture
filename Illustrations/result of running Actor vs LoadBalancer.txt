@@ -23,3 +23,18 @@ From the benchmarker:
 |------------------------- |-------------- |-----------:|---------:|----------:|-----------:|
 | RunLoadBalancerBenchmark | 100           |   248.9 ms | 23.58 ms |  66.13 ms |  228.59 KB |
 | RunLoadBalancerBenchmark | 1000          | 2,098.3 ms | 44.36 ms | 128.70 ms | 2287.53 KB |
+
+
+
+
+
+After running with remote clients
+
+Approach        Requests        Fastest (ms)    Slowest (ms)    Average (ms)    Q25 (ms)        Median (ms)     Q75 (ms)
+Server started
+Actor           100             8,17            1096,66         551,16          264,87          570,52          851,72
+LoadBalancer    100             17,63           896,84          444,38          224,59          451,09          646,53
+Actor           1000            3,93            11031,40                5322,63         2605,78         5375,12         8117,81
+LoadBalancer    1000            14,91           2896,18         1288,75         606,79          1252,58         1932,33
+Actor           10000           3,07            88942,80                44382,09                18183,70                46912,56                70698,14
+LoadBalancer    10000           10,73           23194,52                9452,57         3645,15         7976,70         15256,09

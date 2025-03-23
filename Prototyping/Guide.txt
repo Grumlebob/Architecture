@@ -1,12 +1,12 @@
-The server laptops:
+1. The server laptops:
 From folder Prototyping/RemoteMessageParsing
 dotnet run --project RemoteMessageServer -- 5000
 
-The main computer:
+2. The main computer:
 In BetPlacementBenchmarking.cs make sure the ip's are set to the laptops's.
 To run benchmarks from folder Prototyping/AkkaBenchmarkExample:
 dotnet run -c Release
 
-The client laptops:
+3. The client laptops:
 From folder Prototyping/RemoteRequestClient
 dotnet run
