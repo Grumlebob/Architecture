@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,8 +30,25 @@ namespace AkkaBenchmarkExample
 
     public static class BookmakerRequestFactory
     {
-        public static BookmakerRequestBase Create(int i) =>
-            (i % 11) switch
+        private static ForwardServer server = new ForwardServer();
+        public static async Task<BookmakerRequestBase> Create(int i)
+        {
+            //Use i to simulate receiving a request
+            //Use j for the real deal
+            //listen on port 5000 to receive requests
+            string msg = await server.ReceiveAMessage();
+            int j = -1;
+            try
+            {
+                j = int.Parse(msg);
+            }
+            catch (Exception _)
+            {
+                j = -1;
+            }
+
+            i = j; // switch to the real deal
+            return (i % 11) switch
             {
                 // Uneven load. Then times the traffic to GetLuckyBookmaker
                 0 => new BetanoBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
@@ -46,6 +64,7 @@ namespace AkkaBenchmarkExample
                 10 => new GetLuckyBookmaker { Id = i, InitiatedTime = DateTime.UtcNow },
                 _ => throw new Exception("Unexpected case")
             };
+        }
     }
 
     #endregion
@@ -230,7 +249,7 @@ namespace AkkaBenchmarkExample
         public async Task<List<double>> RunActorBenchmark()
         {
             return await BenchmarkHelper.RunBenchmarkTest(
-                i => ActorProcessor.ForwardRequestAsync(BookmakerRequestFactory.Create(i)),
+                async i => await ActorProcessor.ForwardRequestAsync(await BookmakerRequestFactory.Create(i)),
                 TotalRequests);
         }
     }
@@ -246,7 +265,7 @@ namespace AkkaBenchmarkExample
         public async Task<List<double>> RunLoadBalancerBenchmark()
         {
             return await BenchmarkHelper.RunBenchmarkTest(
-                i => LoadBalancerProcessor.ForwardRequestAsync(BookmakerRequestFactory.Create(i)),
+                async i => await LoadBalancerProcessor.ForwardRequestAsync(await BookmakerRequestFactory.Create(i)),
                 TotalRequests);
         }
     }
@@ -304,17 +323,17 @@ namespace AkkaBenchmarkExample
 
         public static async Task RunAllCustomBenchmarks()
         {
-            int[] requestCounts = { 100, 1000, 10000 };
+            int[] requestCounts = [100, 1000, 10000];
 
             Console.WriteLine("=== Custom Benchmark Results ===");
             Console.WriteLine("Approach\tRequests\tFastest (ms)\tSlowest (ms)\tAverage (ms)\tQ25 (ms)\tMedian (ms)\tQ75 (ms)");
 
             foreach (var count in requestCounts)
             {
-                var distStats = await RunCustomActorBenchmark(count);
+                var actorStats = await RunCustomActorBenchmark(count);
                 var lbStats = await RunCustomLoadBalancerBenchmark(count);
 
-                Console.WriteLine($"Actor\t\t{count}\t\t{distStats.Fastest:F2}\t\t{distStats.Slowest:F2}\t\t{distStats.Average:F2}\t\t{distStats.Q25:F2}\t\t{distStats.Median:F2}\t\t{distStats.Q75:F2}");
+                Console.WriteLine($"Actor\t\t{count}\t\t{actorStats.Fastest:F2}\t\t{actorStats.Slowest:F2}\t\t{actorStats.Average:F2}\t\t{actorStats.Q25:F2}\t\t{actorStats.Median:F2}\t\t{actorStats.Q75:F2}");
                 Console.WriteLine($"LoadBalancer\t{count}\t\t{lbStats.Fastest:F2}\t\t{lbStats.Slowest:F2}\t\t{lbStats.Average:F2}\t\t{lbStats.Q25:F2}\t\t{lbStats.Median:F2}\t\t{lbStats.Q75:F2}");
             }
         }
@@ -322,7 +341,7 @@ namespace AkkaBenchmarkExample
         private static async Task<Stats> RunCustomActorBenchmark(int totalRequests)
         {
             var delays = await BenchmarkHelper.RunBenchmarkTest(
-                i => ActorProcessor.ForwardRequestAsync(BookmakerRequestFactory.Create(i)),
+                async i => await ActorProcessor.ForwardRequestAsync(await BookmakerRequestFactory.Create(i)),
                 totalRequests);
             return ComputeStats(delays);
         }
@@ -330,7 +349,7 @@ namespace AkkaBenchmarkExample
         private static async Task<Stats> RunCustomLoadBalancerBenchmark(int totalRequests)
         {
             var delays = await BenchmarkHelper.RunBenchmarkTest(
-                i => LoadBalancerProcessor.ForwardRequestAsync(BookmakerRequestFactory.Create(i)),
+                async i => await LoadBalancerProcessor.ForwardRequestAsync(await BookmakerRequestFactory.Create(i)),
                 totalRequests);
             return ComputeStats(delays);
         }
@@ -355,6 +374,33 @@ namespace AkkaBenchmarkExample
             await CustomBenchmarkRunner.RunAllCustomBenchmarks();
         }
     }
-
-    #endregion
 }
+#endregion
+
+
+#region Server Configuration
+
+public class ForwardServer
+{
+    private readonly TcpListener listener = new TcpListener(IPAddress.Any, 5000);
+
+    public ForwardServer()
+    {
+        listener.Start();
+        Console.WriteLine("Server started");
+    }
+
+    public async Task<string> ReceiveAMessage()
+    {
+        // Wait for a client to connect.
+        using TcpClient client = await listener.AcceptTcpClientAsync();
+        // Get the network stream.
+        using NetworkStream stream = client.GetStream();
+        // Use a StreamReader to read text data.
+        using StreamReader reader = new StreamReader(stream, Encoding.UTF8);
+        // Read a single line (message terminated by a newline).
+        string? message = await reader.ReadLineAsync();
+        return message ?? "";
+    }
+}
+#endregion
