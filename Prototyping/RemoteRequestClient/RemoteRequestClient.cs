@@ -51,7 +51,8 @@ public class Program
     public static async Task Main(string[] args)
     {
         // Start the client to send numbers.
-        var client = new ForwardClient("192.168.21.1", 5000);
+        // use ip of the "microkernel" computer running benchmarks
+        var client = new ForwardClient("192.168.0.69", 5000);
         await client.SendNumbersAsync(10000);
     }
 }

@@ -22,7 +22,7 @@ namespace AkkaBenchmarkExample
 
     public static class IPHelper
     {
-        public static List<string> IPs { get; private set; } = new List<string> { "192.168.0.138", "192.168.0.170" }; // Thor, Jacob
+        public static List<string> IPs { get; private set; } = new List<string> { "192.168.107.1", "192.168.0.152" }; // Thor, Jacob
     }
 
     public sealed class BetanoBookmaker : BookmakerRequestBase { }
