@@ -40,7 +40,7 @@ namespace RemoteMessageServer
                             }
                             string receivedMessage = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                             Console.WriteLine($"Received: {receivedMessage}");
-                            await Task.Sleep(10);
+                            await Task.Delay(10);
 
                             // Send back an acknowledgement.
                             string response = $"Ack: Received your message '{receivedMessage}'";
