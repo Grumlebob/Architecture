@@ -56,7 +56,7 @@ namespace AkkaBenchmarkExample
     public static class ActorProcessor
     {
         // In this simulation the router chooses the “actor” by calling a network method.
-        public static async Task<BookmakerRequestBase> ProcessRequestAsync(BookmakerRequestBase request)
+        public static async Task<BookmakerRequestBase> ForwardRequestAsync(BookmakerRequestBase request)
         {
             // Based on the request type, choose the corresponding remote IP/port.
             // For simplicity, we assume each actor is on a different laptop.
@@ -87,8 +87,10 @@ namespace AkkaBenchmarkExample
             new RemoteServer(IPHelper.IPs[1], 5000)
         };
 
-        public static async Task<BookmakerRequestBase> ProcessRequestAsync(BookmakerRequestBase request)
+        public static async Task<BookmakerRequestBase> ForwardRequestAsync(BookmakerRequestBase request)
         {
+            // listen for requests on port 5000
+
             // For this simulation, we choose the server with the least current load.
             RemoteServer chosenServer = Servers.OrderBy(s => s.CurrentLoad).First();
             chosenServer.IncrementLoad();
@@ -181,8 +183,6 @@ namespace AkkaBenchmarkExample
                 byte[] buffer = new byte[1024];
                 int bytesRead = await connection.stream.ReadAsync(buffer, 0, buffer.Length);
                 string response = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                // Optionally, you can log the response:
-                // Console.WriteLine($"Response from {ipAddress}:{port} -> {response}");
 
                 // Mark the completion time.
                 request.ComputationDoneTime = DateTime.UtcNow;
@@ -230,7 +230,7 @@ namespace AkkaBenchmarkExample
         public async Task<List<double>> RunActorBenchmark()
         {
             return await BenchmarkHelper.RunBenchmarkTest(
-                i => ActorProcessor.ProcessRequestAsync(BookmakerRequestFactory.Create(i)),
+                i => ActorProcessor.ForwardRequestAsync(BookmakerRequestFactory.Create(i)),
                 TotalRequests);
         }
     }
@@ -246,7 +246,7 @@ namespace AkkaBenchmarkExample
         public async Task<List<double>> RunLoadBalancerBenchmark()
         {
             return await BenchmarkHelper.RunBenchmarkTest(
-                i => LoadBalancerProcessor.ProcessRequestAsync(BookmakerRequestFactory.Create(i)),
+                i => LoadBalancerProcessor.ForwardRequestAsync(BookmakerRequestFactory.Create(i)),
                 TotalRequests);
         }
     }
@@ -322,7 +322,7 @@ namespace AkkaBenchmarkExample
         private static async Task<Stats> RunCustomActorBenchmark(int totalRequests)
         {
             var delays = await BenchmarkHelper.RunBenchmarkTest(
-                i => ActorProcessor.ProcessRequestAsync(BookmakerRequestFactory.Create(i)),
+                i => ActorProcessor.ForwardRequestAsync(BookmakerRequestFactory.Create(i)),
                 totalRequests);
             return ComputeStats(delays);
         }
@@ -330,7 +330,7 @@ namespace AkkaBenchmarkExample
         private static async Task<Stats> RunCustomLoadBalancerBenchmark(int totalRequests)
         {
             var delays = await BenchmarkHelper.RunBenchmarkTest(
-                i => LoadBalancerProcessor.ProcessRequestAsync(BookmakerRequestFactory.Create(i)),
+                i => LoadBalancerProcessor.ForwardRequestAsync(BookmakerRequestFactory.Create(i)),
                 totalRequests);
             return ComputeStats(delays);
         }
