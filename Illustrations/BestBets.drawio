@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.1.1 Chrome/132.0.6834.210 Electron/34.3.3 Safari/537.36" version="26.1.1">
   <diagram name="Page-1" id="bNE_D-fTSQdiR-3sDrzl">
-    <mxGraphModel dx="9269" dy="8912" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="9389" dy="8982" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -3483,31 +3483,31 @@
           <mxGeometry x="33310.82" y="-3346" width="86.12" height="91" as="geometry" />
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-206" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://spilfiduser.dk/wp-content/uploads/2021/06/bet365-1024x522-1.png;" vertex="1" parent="1">
-          <mxGeometry x="-2572.09" y="2965.19" width="102.5" height="52.25" as="geometry" />
+          <mxGeometry x="-1744.0900000000001" y="2971.19" width="102.5" height="52.25" as="geometry" />
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-207" value="Odds 2.0x&lt;div&gt;(loaded to BestBets)&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=14;" vertex="1" parent="1">
-          <mxGeometry x="-2469.59" y="2968.32" width="145" height="46" as="geometry" />
+          <mxGeometry x="-1641.5900000000001" y="2974.32" width="145" height="46" as="geometry" />
         </mxCell>
-        <mxCell id="99pukAjtXeWEKAMVkxu4-209" value="Forward bet request" style="text;fontFamily=Helvetica;fontSize=14;fontColor=default;labelBackgroundColor=default;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="-2469.59" y="3051.31" width="103" height="49.5" as="geometry" />
+        <mxCell id="99pukAjtXeWEKAMVkxu4-209" value="Notify trigger order bet" style="text;fontFamily=Helvetica;fontSize=14;fontColor=default;labelBackgroundColor=default;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="-1641.5900000000001" y="3057.31" width="112.59" height="49.5" as="geometry" />
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-212" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="-2521.21" y="3025.15" as="sourcePoint" />
-            <mxPoint x="-2521.21" y="3051.65" as="targetPoint" />
+            <mxPoint x="-1693.21" y="3031.15" as="sourcePoint" />
+            <mxPoint x="-1693.21" y="3057.65" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-213" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="-2521.21" y="3101.44" as="sourcePoint" />
-            <mxPoint x="-2521.21" y="3127.94" as="targetPoint" />
+            <mxPoint x="-1693.21" y="3107.44" as="sourcePoint" />
+            <mxPoint x="-1693.21" y="3133.94" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-214" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://spilfiduser.dk/wp-content/uploads/2021/06/bet365-1024x522-1.png;" vertex="1" parent="1">
-          <mxGeometry x="-2572.09" y="3129.56" width="102.5" height="52.25" as="geometry" />
+          <mxGeometry x="-1744.0900000000001" y="3135.56" width="102.5" height="52.25" as="geometry" />
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-216" value="&lt;font style=&quot;color: rgb(255, 128, 0);&quot;&gt;Odds 1.8x&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(255, 128, 0);&quot;&gt;(intermediate change)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=14;" vertex="1" parent="1">
-          <mxGeometry x="-2465.09" y="3132.31" width="154" height="46" as="geometry" />
+          <mxGeometry x="-1637.0900000000001" y="3138.31" width="154" height="46" as="geometry" />
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-228" value="Odds did &lt;br&gt;not change" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;exitX=1;exitY=0.92;exitDx=0;exitDy=0;exitPerimeter=0;fontStyle=1" edge="1" parent="1" source="99pukAjtXeWEKAMVkxu4-217" target="99pukAjtXeWEKAMVkxu4-227">
           <mxGeometry x="0.0197" y="-3" relative="1" as="geometry">
@@ -3515,127 +3515,131 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-217" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#515151;shape=mxgraph.mscae.enterprise.database_server;strokeWidth=8;fontFamily=Helvetica;fontSize=12;fontColor=default;" vertex="1" parent="1">
-          <mxGeometry x="-2541.09" y="3212.31" width="61" height="60.5" as="geometry" />
+          <mxGeometry x="-1713.0900000000001" y="3218.31" width="61" height="60.5" as="geometry" />
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-219" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="-2518.09" y="3184.56" as="sourcePoint" />
-            <mxPoint x="-2518.09" y="3211.06" as="targetPoint" />
+            <mxPoint x="-1690.0900000000001" y="3190.56" as="sourcePoint" />
+            <mxPoint x="-1690.0900000000001" y="3217.06" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-220" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#515151;shape=mxgraph.mscae.enterprise.database_server;strokeWidth=8;fontFamily=Helvetica;fontSize=12;fontColor=default;" vertex="1" parent="1">
-          <mxGeometry x="-2569.09" y="3030.06" width="61" height="60.5" as="geometry" />
+          <mxGeometry x="-1741.0900000000001" y="3036.06" width="61" height="60.5" as="geometry" />
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-221" value="Are new odds within threshold?" style="text;fontFamily=Helvetica;fontSize=14;fontColor=default;labelBackgroundColor=default;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="-2468.7200000000003" y="3219.81" width="119.63" height="49.5" as="geometry" />
+          <mxGeometry x="-1640.7200000000003" y="3225.81" width="119.63" height="49.5" as="geometry" />
         </mxCell>
-        <mxCell id="99pukAjtXeWEKAMVkxu4-223" value="Yes" style="edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=1;fontStyle=1" edge="1" parent="1" source="99pukAjtXeWEKAMVkxu4-217" target="99pukAjtXeWEKAMVkxu4-220">
-          <mxGeometry relative="1" as="geometry">
+        <mxCell id="99pukAjtXeWEKAMVkxu4-223" value="Yes&lt;div&gt;(Retry)&lt;/div&gt;" style="edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=1;fontStyle=1" edge="1" parent="1" source="99pukAjtXeWEKAMVkxu4-217" target="99pukAjtXeWEKAMVkxu4-220">
+          <mxGeometry x="-0.0026" relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="-2616" y="3243" />
-              <mxPoint x="-2616" y="3060" />
+              <mxPoint x="-1788" y="3249" />
+              <mxPoint x="-1788" y="3066" />
             </Array>
+            <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-224" value="" style="shape=mxgraph.mockup.markup.redX;fillColor=#ff0000;html=1;shadow=0;whiteSpace=wrap;strokeColor=none;" vertex="1" parent="1">
-          <mxGeometry x="-2574.0000000000005" y="3316" width="29" height="31.5" as="geometry" />
+          <mxGeometry x="-1746.0000000000005" y="3322" width="29" height="31.5" as="geometry" />
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-225" value="No" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.932;entryY=-0.011;entryDx=0;entryDy=0;entryPerimeter=0;fontStyle=1" edge="1" parent="1" source="99pukAjtXeWEKAMVkxu4-217" target="99pukAjtXeWEKAMVkxu4-224">
           <mxGeometry x="-0.3962" relative="1" as="geometry">
-            <mxPoint x="-2559" y="3287" as="sourcePoint" />
-            <mxPoint x="-2581.8700000000003" y="3313.5" as="targetPoint" />
+            <mxPoint x="-1731" y="3293" as="sourcePoint" />
+            <mxPoint x="-1753.8700000000003" y="3319.5" as="targetPoint" />
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-226" value="Cancel" style="text;fontFamily=Helvetica;fontSize=14;fontColor=default;labelBackgroundColor=default;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="-2583" y="3343" width="52" height="34" as="geometry" />
+          <mxGeometry x="-1755" y="3349" width="52" height="34" as="geometry" />
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-227" value="" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;align=center;fillColor=#2D9C5E;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;shape=mxgraph.gcp2.check" vertex="1" parent="1">
-          <mxGeometry x="-2388.75" y="3301" width="52.5" height="42" as="geometry" />
+          <mxGeometry x="-1560.75" y="3307" width="52.5" height="42" as="geometry" />
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-229" value="Bet successfully placed" style="text;fontFamily=Helvetica;fontSize=14;fontColor=default;labelBackgroundColor=default;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="-2416" y="3343" width="123.76" height="34" as="geometry" />
+          <mxGeometry x="-1588" y="3349" width="123.76" height="34" as="geometry" />
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-230" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://spilfiduser.dk/wp-content/uploads/2021/06/bet365-1024x522-1.png;" vertex="1" parent="1">
-          <mxGeometry x="-2189.98" y="2965.19" width="102.5" height="52.25" as="geometry" />
+          <mxGeometry x="-2200.98" y="2969.19" width="102.5" height="52.25" as="geometry" />
         </mxCell>
-        <mxCell id="99pukAjtXeWEKAMVkxu4-231" value="Odds 2.0x&lt;div&gt;(loaded to BestBets)&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=14;" vertex="1" parent="1">
-          <mxGeometry x="-2087.48" y="2968.32" width="145" height="46" as="geometry" />
+        <mxCell id="99pukAjtXeWEKAMVkxu4-231" value="Odds 2.0x&lt;div&gt;(loaded to BestBets&lt;/div&gt;&lt;div&gt;and shown to user)&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="-2098.48" y="2964.32" width="140" height="62" as="geometry" />
         </mxCell>
-        <mxCell id="99pukAjtXeWEKAMVkxu4-232" value="Displayed to user who bets" style="text;fontFamily=Helvetica;fontSize=14;fontColor=default;labelBackgroundColor=default;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="-2087.48" y="3051.31" width="103" height="49.5" as="geometry" />
+        <mxCell id="99pukAjtXeWEKAMVkxu4-232" value="Attempt to place bet" style="text;fontFamily=Helvetica;fontSize=14;fontColor=default;labelBackgroundColor=default;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="-2098.48" y="3055.31" width="103" height="49.5" as="geometry" />
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-233" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="-2139.1" y="3025.15" as="sourcePoint" />
-            <mxPoint x="-2139.1" y="3051.65" as="targetPoint" />
+            <mxPoint x="-2150.1" y="3029.15" as="sourcePoint" />
+            <mxPoint x="-2150.1" y="3055.65" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-234" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="-2139.1" y="3101.44" as="sourcePoint" />
-            <mxPoint x="-2139.1" y="3127.94" as="targetPoint" />
+            <mxPoint x="-2150.1" y="3105.44" as="sourcePoint" />
+            <mxPoint x="-2150.1" y="3131.94" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-235" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://spilfiduser.dk/wp-content/uploads/2021/06/bet365-1024x522-1.png;" vertex="1" parent="1">
-          <mxGeometry x="-2189.98" y="3129.56" width="102.5" height="52.25" as="geometry" />
+          <mxGeometry x="-2200.98" y="3133.56" width="102.5" height="52.25" as="geometry" />
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-236" value="&lt;font style=&quot;color: rgb(255, 128, 0);&quot;&gt;Odds 1.8x&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(255, 128, 0);&quot;&gt;(intermediate change)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=14;" vertex="1" parent="1">
-          <mxGeometry x="-2082.98" y="3132.31" width="154" height="46" as="geometry" />
+          <mxGeometry x="-2093.98" y="3136.31" width="154" height="46" as="geometry" />
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-238" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#515151;shape=mxgraph.mscae.enterprise.database_server;strokeWidth=8;fontFamily=Helvetica;fontSize=12;fontColor=default;" vertex="1" parent="1">
-          <mxGeometry x="-2158.98" y="3212.31" width="61" height="60.5" as="geometry" />
+          <mxGeometry x="-2169.98" y="3216.31" width="61" height="60.5" as="geometry" />
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-239" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="-2135.98" y="3184.56" as="sourcePoint" />
-            <mxPoint x="-2135.98" y="3211.06" as="targetPoint" />
+            <mxPoint x="-2146.98" y="3188.56" as="sourcePoint" />
+            <mxPoint x="-2146.98" y="3215.06" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-241" value="Are new odds within threshold?" style="text;fontFamily=Helvetica;fontSize=14;fontColor=default;labelBackgroundColor=default;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="-2086.61" y="3219.81" width="119.63" height="49.5" as="geometry" />
+          <mxGeometry x="-2097.61" y="3223.81" width="119.63" height="49.5" as="geometry" />
         </mxCell>
-        <mxCell id="99pukAjtXeWEKAMVkxu4-242" value="No" style="edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=1;fontStyle=1" edge="1" parent="1" source="99pukAjtXeWEKAMVkxu4-238">
-          <mxGeometry relative="1" as="geometry">
+        <mxCell id="99pukAjtXeWEKAMVkxu4-242" value="No&lt;br&gt;(Prompt user)" style="edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=1;fontStyle=1" edge="1" parent="1" source="99pukAjtXeWEKAMVkxu4-238" target="99pukAjtXeWEKAMVkxu4-260">
+          <mxGeometry x="0.2874" y="-3" relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="-2234" y="3243" />
-              <mxPoint x="-2234" y="3060" />
+              <mxPoint x="-2286" y="3247" />
+              <mxPoint x="-2286" y="2993" />
             </Array>
-            <mxPoint x="-2186.9799999999987" y="3060.3099999999995" as="targetPoint" />
+            <mxPoint x="-2237" y="2993" as="targetPoint" />
+            <mxPoint as="offset" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="99pukAjtXeWEKAMVkxu4-248" value="" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontStyle=1;fontSize=14;" vertex="1" parent="1">
-          <mxGeometry x="-2150.74" y="3054" width="24.02" height="48.69" as="geometry" />
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-251" value="Odds did &lt;br&gt;not change" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;exitX=1;exitY=0.92;exitDx=0;exitDy=0;exitPerimeter=0;fontStyle=1" edge="1" parent="1" target="99pukAjtXeWEKAMVkxu4-252" source="99pukAjtXeWEKAMVkxu4-238">
           <mxGeometry x="0.0197" y="-3" relative="1" as="geometry">
-            <mxPoint x="-2116.74" y="3294" as="sourcePoint" />
+            <mxPoint x="-2127.74" y="3298" as="sourcePoint" />
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-252" value="" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;align=center;fillColor=#2D9C5E;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;shape=mxgraph.gcp2.check" vertex="1" parent="1">
-          <mxGeometry x="-2010.75" y="3297" width="52.5" height="42" as="geometry" />
+          <mxGeometry x="-2028" y="3300.5" width="52.5" height="42" as="geometry" />
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-253" value="Bet successfully placed" style="text;fontFamily=Helvetica;fontSize=14;fontColor=default;labelBackgroundColor=default;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="-2037.9999999999998" y="3339" width="123.76" height="34" as="geometry" />
+          <mxGeometry x="-2054" y="3342.5" width="123.76" height="34" as="geometry" />
         </mxCell>
-        <mxCell id="99pukAjtXeWEKAMVkxu4-254" value="Yes &lt;br&gt;(auto retry)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontStyle=1;curved=1;" edge="1" parent="1" source="99pukAjtXeWEKAMVkxu4-238">
-          <mxGeometry x="-0.2165" y="18" relative="1" as="geometry">
-            <mxPoint x="-2165" y="3284" as="sourcePoint" />
-            <mxPoint x="-2169" y="3262" as="targetPoint" />
+        <mxCell id="99pukAjtXeWEKAMVkxu4-254" value="Yes &lt;br&gt;(Auto retry)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontStyle=1;curved=1;" edge="1" parent="1" source="99pukAjtXeWEKAMVkxu4-238" target="99pukAjtXeWEKAMVkxu4-259">
+          <mxGeometry x="0.1911" y="5" relative="1" as="geometry">
+            <mxPoint x="-2176" y="3288" as="sourcePoint" />
+            <mxPoint x="-2180" y="3266" as="targetPoint" />
             <mxPoint as="offset" />
             <Array as="points">
-              <mxPoint x="-2138" y="3296" />
-              <mxPoint x="-2187" y="3296" />
-              <mxPoint x="-2187" y="3262" />
+              <mxPoint x="-2232" y="3232" />
+              <mxPoint x="-2232" y="3068" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-255" value="User placing bets with a custom threshold" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="-2216" y="2908" width="222" height="25" as="geometry" />
+          <mxGeometry x="-2227" y="2912" width="222" height="25" as="geometry" />
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-256" value="Trigger order bet with a given threshold" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="-2617" y="2910" width="209" height="25" as="geometry" />
+          <mxGeometry x="-1789" y="2916" width="209" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="99pukAjtXeWEKAMVkxu4-259" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#515151;shape=mxgraph.mscae.enterprise.database_server;strokeWidth=8;fontFamily=Helvetica;fontSize=12;fontColor=default;" vertex="1" parent="1">
+          <mxGeometry x="-2191" y="3041.1" width="55" height="54.81" as="geometry" />
+        </mxCell>
+        <mxCell id="99pukAjtXeWEKAMVkxu4-260" value="" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="-2234" y="2962.5" width="30" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
