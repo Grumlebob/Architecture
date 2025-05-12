@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.2.15 Chrome/134.0.6998.205 Electron/35.2.1 Safari/537.36" version="26.2.15">
   <diagram name="Page-1" id="bNE_D-fTSQdiR-3sDrzl">
-    <mxGraphModel dx="13525" dy="10980" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="24120" dy="18720" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -2317,7 +2317,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="MZuMaS_r5kYf5SQJwF9V-146" value="Bookmakers" style="rounded=0;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=1;fillColor=none;gradientColor=none;movable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;strokeWidth=4;" parent="1" vertex="1">
-          <mxGeometry x="25994.5" y="16512.879999999997" width="527" height="252" as="geometry" />
+          <mxGeometry x="25991" y="16321.379999999997" width="527" height="252" as="geometry" />
         </mxCell>
         <mxCell id="MZuMaS_r5kYf5SQJwF9V-151" value="State change&lt;br&gt;&lt;i&gt;(produce)&lt;/i&gt;" style="edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;strokeWidth=5;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=0;startFill=0;endArrow=classic;endFill=1;endSize=50;targetPerimeterSpacing=-1;" parent="1" source="MZuMaS_r5kYf5SQJwF9V-148" target="MZuMaS_r5kYf5SQJwF9V-145" edge="1">
           <mxGeometry x="0.1039" y="159" relative="1" as="geometry">
@@ -2325,23 +2325,23 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="MZuMaS_r5kYf5SQJwF9V-148" value="SportsOddsUpdater&lt;br&gt;Endpoint" style="rounded=0;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=1;fillColor=none;gradientColor=none;movable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;strokeWidth=4;" parent="1" vertex="1">
-          <mxGeometry x="27358.5" y="16482.37" width="637" height="309.03" as="geometry" />
+          <mxGeometry x="27355" y="16290.869999999999" width="637" height="309.03" as="geometry" />
         </mxCell>
         <mxCell id="MZuMaS_r5kYf5SQJwF9V-153" value="Notify&lt;br&gt;&lt;i&gt;(consume)&lt;/i&gt;" style="edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;strokeWidth=5;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=none;autosize=1;resizable=0;startFill=0;endArrow=classic;endFill=1;endSize=50;targetPerimeterSpacing=-1;" parent="1" source="MZuMaS_r5kYf5SQJwF9V-145" target="MZuMaS_r5kYf5SQJwF9V-152" edge="1">
-          <mxGeometry x="0.0817" y="206" relative="1" as="geometry">
-            <mxPoint y="1" as="offset" />
+          <mxGeometry x="0.0741" y="-219" relative="1" as="geometry">
+            <mxPoint y="-2" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="MZuMaS_r5kYf5SQJwF9V-145" value="Trigger Order Broker" style="rounded=0;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontStyle=0;labelBackgroundColor=none;autosize=0;resizable=1;fillColor=#fff2cc;movable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;strokeWidth=4;strokeColor=#d6b656;" parent="1" vertex="1">
-          <mxGeometry x="28774.5" y="16520.22" width="662" height="233.32" as="geometry" />
+          <mxGeometry x="28771" y="16328.720000000001" width="662" height="233.32" as="geometry" />
         </mxCell>
         <mxCell id="MZuMaS_r5kYf5SQJwF9V-156" value="Invoke with internal&lt;br&gt;request format" style="edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;strokeWidth=5;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=0;startFill=0;endArrow=classic;endFill=1;endSize=50;targetPerimeterSpacing=-1;" parent="1" source="MZuMaS_r5kYf5SQJwF9V-152" target="MZuMaS_r5kYf5SQJwF9V-155" edge="1">
-          <mxGeometry x="-0.0418" y="-145" relative="1" as="geometry">
-            <mxPoint x="-3" y="-6" as="offset" />
+          <mxGeometry x="0.1315" y="-119" relative="1" as="geometry">
+            <mxPoint x="2" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="MZuMaS_r5kYf5SQJwF9V-152" value="Trigger order &lt;br&gt;subscribers" style="rounded=0;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=0;resizable=1;fillColor=none;gradientColor=none;movable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;strokeWidth=4;" parent="1" vertex="1">
-          <mxGeometry x="28842" y="17632.75" width="527" height="264.5" as="geometry" />
+          <mxGeometry x="28842" y="17652.75" width="527" height="211.25" as="geometry" />
         </mxCell>
         <mxCell id="MZuMaS_r5kYf5SQJwF9V-160" value="Invoke" style="edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;strokeWidth=5;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=0;startFill=0;endArrow=classic;endFill=1;endSize=50;targetPerimeterSpacing=-1;" parent="1" source="MZuMaS_r5kYf5SQJwF9V-155" target="MZuMaS_r5kYf5SQJwF9V-159" edge="1">
           <mxGeometry x="-0.0745" y="-142" relative="1" as="geometry">
@@ -2365,7 +2365,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="MZuMaS_r5kYf5SQJwF9V-166" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#000000;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=1;rotation=0;" parent="1" vertex="1">
-          <mxGeometry x="26198.5" y="16072.5" width="114" height="114" as="geometry" />
+          <mxGeometry x="26195" y="15881" width="114" height="114" as="geometry" />
         </mxCell>
         <mxCell id="MZuMaS_r5kYf5SQJwF9V-172" value="&lt;span&gt;Trigger Order Broker&lt;/span&gt;" style="shape=folder;fontStyle=1;tabWidth=956;tabHeight=226;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;container=1;collapsible=0;recursiveResize=0;whiteSpace=wrap;strokeColor=#d6b656;strokeWidth=4;align=center;verticalAlign=middle;spacingTop=10;fontFamily=Helvetica;fontSize=70;labelBackgroundColor=none;fillColor=#fff2cc;" parent="1" vertex="1">
           <mxGeometry x="26182" y="19229" width="3736" height="1753" as="geometry" />
@@ -2602,7 +2602,7 @@
           <mxGeometry x="27401" y="15957" width="503" height="108" as="geometry" />
         </mxCell>
         <mxCell id="MZuMaS_r5kYf5SQJwF9V-260" value="Design decisions regarding tactics &amp;amp; patterns" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#6c8ebf;fillColor=#dae8fc;fontSize=150;" parent="1" vertex="1">
-          <mxGeometry x="26209" y="15387" width="3020" height="192" as="geometry" />
+          <mxGeometry x="23920" y="14809" width="3020" height="192" as="geometry" />
         </mxCell>
         <mxCell id="MZuMaS_r5kYf5SQJwF9V-261" value="Zoom-level: 3" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#000000;fillColor=#585858;fontSize=80;fontColor=#FCFCFC;" parent="1" vertex="1">
           <mxGeometry x="26100" y="25626" width="503" height="108" as="geometry" />
@@ -2614,7 +2614,7 @@
           <mxGeometry x="27190.5" y="25122" width="1563" height="132" as="geometry" />
         </mxCell>
         <mxCell id="MZuMaS_r5kYf5SQJwF9V-265" value="&lt;span style=&quot;&quot;&gt;&lt;font&gt;Overview: Event broker, Microkernel &amp;amp; Actor model&lt;/font&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#6c8ebf;fillColor=#dae8fc;fontSize=100;fontStyle=0" parent="1" vertex="1">
-          <mxGeometry x="26540" y="15718" width="2274" height="132" as="geometry" />
+          <mxGeometry x="24251" y="15140" width="2274" height="132" as="geometry" />
         </mxCell>
         <mxCell id="PBUzV_MYCmU1rsNPqEq2-2" value="&amp;lt;&amp;lt;Interact&amp;gt;&amp;gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;dashed=1;dashPattern=8 8;strokeWidth=9;endSize=56;fontSize=81;" parent="1" source="PBUzV_MYCmU1rsNPqEq2-1" target="MZuMaS_r5kYf5SQJwF9V-7" edge="1">
           <mxGeometry x="0.0689" y="112" relative="1" as="geometry">
@@ -3736,6 +3736,28 @@
             <mxPoint x="30808" y="1336" as="targetPoint" />
             <mxPoint x="-2" as="offset" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="dejfPOtXIiEcSmY61lMu-46" value="&amp;nbsp;Legend" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=4;fontSize=70;align=left;verticalAlign=top;fontStyle=4" vertex="1" parent="1">
+          <mxGeometry x="29268" y="16652" width="709" height="910" as="geometry" />
+        </mxCell>
+        <mxCell id="dejfPOtXIiEcSmY61lMu-47" value="Component" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=4;fontSize=60;" vertex="1" parent="1">
+          <mxGeometry x="29409" y="16925" width="363" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="dejfPOtXIiEcSmY61lMu-48" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#000000;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=70;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=1;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="29367" y="16777" width="114" height="114" as="geometry" />
+        </mxCell>
+        <mxCell id="dejfPOtXIiEcSmY61lMu-50" value="&lt;font&gt;Starting point&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=60;" vertex="1" parent="1">
+          <mxGeometry x="29512" y="16795" width="372" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="dejfPOtXIiEcSmY61lMu-51" value="invoke explanation" style="edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;strokeWidth=5;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=60;fontColor=default;fontStyle=0;labelBackgroundColor=default;autosize=1;resizable=0;startFill=0;endArrow=classic;endFill=1;endSize=50;targetPerimeterSpacing=-1;" edge="1" parent="1">
+          <mxGeometry x="-0.1153" y="73" relative="1" as="geometry">
+            <mxPoint x="-1" as="offset" />
+            <mxPoint x="29375.7" y="17223" as="sourcePoint" />
+            <mxPoint x="29852.7" y="17223" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dejfPOtXIiEcSmY61lMu-52" value="Colored box: &lt;br&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Highlighted component &lt;br&gt;with tactic or pattern&lt;/span&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=60;" vertex="1" parent="1">
+          <mxGeometry x="29317" y="17309" width="632" height="228" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
