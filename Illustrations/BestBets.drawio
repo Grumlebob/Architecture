@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.1.1 Chrome/132.0.6834.210 Electron/34.3.3 Safari/537.36" version="26.1.1">
   <diagram name="Page-1" id="bNE_D-fTSQdiR-3sDrzl">
-    <mxGraphModel dx="9647" dy="11134" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="9389" dy="10982" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -3451,8 +3451,8 @@
         <mxCell id="99pukAjtXeWEKAMVkxu4-214" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://spilfiduser.dk/wp-content/uploads/2021/06/bet365-1024x522-1.png;" parent="1" vertex="1">
           <mxGeometry x="-1685.0900000000001" y="3123.56" width="102.5" height="52.25" as="geometry" />
         </mxCell>
-        <mxCell id="99pukAjtXeWEKAMVkxu4-216" value="&lt;font style=&quot;color: rgb(255, 17, 25);&quot;&gt;Possible intermediate &lt;br&gt;odds change. (now&amp;nbsp;1.95x)&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=14;" parent="1" vertex="1">
-          <mxGeometry x="-1570.0000000000002" y="3124.68" width="179" height="46" as="geometry" />
+        <mxCell id="99pukAjtXeWEKAMVkxu4-216" value="&lt;font style=&quot;color: rgb(255, 17, 25);&quot;&gt;Possible intermediate &lt;br&gt;odds change. (now&amp;nbsp;1.9x)&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-1570.0000000000002" y="3124.68" width="171" height="46" as="geometry" />
         </mxCell>
         <mxCell id="99pukAjtXeWEKAMVkxu4-228" value="&lt;font style=&quot;font-size: 13px; color: light-dark(rgb(11, 163, 0), rgb(237, 237, 237));&quot;&gt;Odds did &lt;br&gt;not change&lt;/font&gt;" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#0A7902;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;exitX=1;exitY=1;exitDx=0;exitDy=0;fontStyle=1;entryX=0.191;entryY=0.053;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="GzjeVurrRFf8A_IJrzC9-58" target="99pukAjtXeWEKAMVkxu4-229" edge="1">
           <mxGeometry x="-0.1295" y="1" relative="1" as="geometry">
